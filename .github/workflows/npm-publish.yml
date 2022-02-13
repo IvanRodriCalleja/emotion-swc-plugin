@@ -1,0 +1,116 @@
+name: Build
+
+on:
+  push:
+    tags:
+      - v*
+
+jobs:    
+  linux-musl:
+    name: compile x86_64-unknown-linux-musl
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+      - name: Build
+        run: |
+          rustup -V
+          rustup toolchain list
+          cargo -V
+          cd emotion-swc-plugin
+          cargo build --release
+      - name: github publish
+        uses: softprops/action-gh-release@v1
+        with:
+          files: emotion-swc-plugin/target/release/libswc_emotion-swc-plugin.so
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: npm publish
+        run: |
+          cp emotion-swc-plugin/target/release/libswc_emotion-swc-plugin.so packages/linux-x64/
+          cd packages/linux-x64
+          echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
+          npm publish --access public
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+  windows-msvc:
+    name: compile x86_64-pc-windows-msvc
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+      - name: Build
+        run: |
+          rustup -V
+          rustup toolchain list
+          cargo -V
+          cd emotion-swc-plugin
+          cargo build --release
+      - name: github publish
+        uses: softprops/action-gh-release@v1
+        with:
+          files: emotion-swc-plugin/target/release/swc_emotion-swc-plugin.dll
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: npm publish
+        run: |
+          cp emotion-swc-plugin/target/release/emotion-swc-plugin.dll packages/win-x64/
+          cd packages/win-x64
+          echo "//registry.npmjs.org/:_authToken=$env:NPM_TOKEN" >> ~/.npmrc
+          npm publish --access public
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+  apple-darwin:
+    name: compile x86_64-apple-darwin
+    runs-on: macos-10.15
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+      - name: Build
+        run: |
+          rustup -V
+          rustup toolchain list
+          cargo -V
+          cd semotion-swc-plugin
+          cargo build --release
+      - name: github publish
+        uses: softprops/action-gh-release@v1
+        with:
+          files: emotion-swc-plugin/target/release/libswc_emotion-swc-plugin.dylib
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: npm publish
+        run: |
+          cp emotion-swc-plugin/target/release/libswc_emotion-swc-plugin.dylib packages/mac-x64/
+          cd packages/mac-x64
+          echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
+          npm publish --access public
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+  publish-npm:
+    needs:
+      - linux-musl
+      - windows-msvc
+      - apple-darwin
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: npm publish
+        run: |
+          echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
+          npm publish --access public
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
