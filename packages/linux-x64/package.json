@@ -1,7 +1,7 @@
 {
     "name": "emotion-swc-plugin-linux-x64-musl",
     "version": "0.0.1",
-    "main": "libswc_emotion-swc-plugin.so",
+    "main": "emotion_swc_plugin.wasm",
     "author": "IvanRodriCalleja <2132321@321.com>",
     "license": "MIT",
     "os": [

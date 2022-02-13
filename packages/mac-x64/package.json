@@ -1,7 +1,7 @@
 {
     "name": "emotion-swc-plugin-darwin-x64",
     "version": "0.0.1",
-    "main": "libswc_emotion-swc-plugin.dylib",
+    "main": "emotion_swc_plugin.wasm",
     "author": "IvanRodriCalleja <2132321@321.com>",
     "license": "MIT",
     "os": [
