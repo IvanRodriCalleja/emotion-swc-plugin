@@ -5,6 +5,10 @@ on:
     tags:
       - v*
   workflow_dispatch:
+    inputs:
+      tag:
+        description: "Release tag"
+        required: true
 
 jobs:    
   linux-musl:
@@ -29,6 +33,7 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           files: emotion-swc-plugin/target/release/libswc_emotion-swc-plugin.so
+          tag_name: ${{.github.events.inputs.tag }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: npm publish
@@ -62,6 +67,7 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           files: emotion-swc-plugin/target/release/swc_emotion-swc-plugin.dll
+          tag_name: ${{.github.events.inputs.tag }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: npm publish
@@ -95,6 +101,7 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           files: emotion-swc-plugin/target/release/libswc_emotion-swc-plugin.dylib
+          tag_name: ${{.github.events.inputs.tag }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: npm publish
