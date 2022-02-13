@@ -33,7 +33,7 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           files: emotion-swc-plugin/target/release/libswc_emotion-swc-plugin.so
-          tag_name: ${{.github.events.inputs.tag }}
+          tag_name: ${{ github.events.inputs.tag }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: npm publish
@@ -67,7 +67,7 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           files: emotion-swc-plugin/target/release/swc_emotion-swc-plugin.dll
-          tag_name: ${{.github.events.inputs.tag }}
+          tag_name: ${{ github.events.inputs.tag }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: npm publish
@@ -95,13 +95,14 @@ jobs:
           rustup -V
           rustup toolchain list
           cargo -V
+          
           cd emotion-swc-plugin
           cargo build --release
       - name: github publish
         uses: softprops/action-gh-release@v1
         with:
           files: emotion-swc-plugin/target/release/libswc_emotion-swc-plugin.dylib
-          tag_name: ${{.github.events.inputs.tag }}
+          tag_name: ${{ github.events.inputs.tag }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: npm publish
