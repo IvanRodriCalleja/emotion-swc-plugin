@@ -39,7 +39,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: npm publish
         run: |
-          cp emotion-swc-plugin/target/release/libswc_emotion-swc-plugin.so packages/linux-x64/
+          cp emotion-swc-plugin/target/wasm32-wasi/release/emotion_swc_plugin.wasm packages/linux-x64/
           cd packages/linux-x64
           echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
           npm publish --access public
@@ -74,7 +74,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: npm publish
         run: |
-          cp emotion-swc-plugin/target/release/emotion-swc-plugin.dll packages/win-x64/
+          cp emotion-swc-plugin/target/wasm32-wasi/release/emotion_swc_plugin.wasm packages/win-x64/
           cd packages/win-x64
           echo "//registry.npmjs.org/:_authToken=$env:NPM_TOKEN" >> ~/.npmrc
           npm publish --access public
@@ -110,7 +110,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: npm publish
         run: |
-          cp emotion-swc-plugin/target/release/libswc_emotion-swc-plugin.dylib packages/mac-x64/
+          cp emotion-swc-plugin/target/wasm32-wasi/release/emotion_swc_plugin.wasm packages/mac-x64/
           cd packages/mac-x64
           echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
           npm publish --access public
