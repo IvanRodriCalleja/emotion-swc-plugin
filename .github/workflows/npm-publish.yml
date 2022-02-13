@@ -35,7 +35,6 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           tag: v${{ github.event.inputs.tag }}
           draft: true
-          bodyFile: emotion-swc-plugin/target/release/libswc_emotion-swc-plugin.so
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: npm publish
@@ -71,7 +70,6 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           tag: v${{ github.event.inputs.tag }}
           draft: true
-          bodyFile: emotion-swc-plugin/target/release/swc_emotion-swc-plugin.dll
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: npm publish
@@ -108,7 +106,6 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           tag: v${{ github.event.inputs.tag }}
           draft: true
-          bodyFile: emotion-swc-plugin/target/release/libswc_emotion-swc-plugin.dylib
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: npm publish
