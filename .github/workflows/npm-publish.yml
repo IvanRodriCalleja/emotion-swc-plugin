@@ -33,7 +33,7 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          tag: ${{ github.events.inputs.tag }}
+          tag: v${{ github.event.inputs.tag }}
           draft: true
           bodyFile: emotion-swc-plugin/target/release/libswc_emotion-swc-plugin.so
         env:
@@ -69,7 +69,7 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          tag: ${{ github.events.inputs.tag }}
+          tag: v${{ github.event.inputs.tag }}
           draft: true
           bodyFile: emotion-swc-plugin/target/release/swc_emotion-swc-plugin.dll
         env:
@@ -106,7 +106,7 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          tag: ${{ github.events.inputs.tag }}
+          tag: v${{ github.event.inputs.tag }}
           draft: true
           bodyFile: emotion-swc-plugin/target/release/libswc_emotion-swc-plugin.dylib
         env:
