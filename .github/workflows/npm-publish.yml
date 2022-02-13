@@ -30,10 +30,12 @@ jobs:
           cd emotion-swc-plugin
           cargo build --release
       - name: github publish
-        uses: softprops/action-gh-release@v1
+        uses: ncipollo/release-action@v1
         with:
-          files: emotion-swc-plugin/target/release/libswc_emotion-swc-plugin.so
-          tag_name: ${{ github.events.inputs.tag }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          tag: ${{ github.events.inputs.tag }}
+          draft: true
+          bodyFile: emotion-swc-plugin/target/release/libswc_emotion-swc-plugin.so
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: npm publish
@@ -64,10 +66,12 @@ jobs:
           cd emotion-swc-plugin
           cargo build --release
       - name: github publish
-        uses: softprops/action-gh-release@v1
+        uses: ncipollo/release-action@v1
         with:
-          files: emotion-swc-plugin/target/release/swc_emotion-swc-plugin.dll
-          tag_name: ${{ github.events.inputs.tag }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          tag: ${{ github.events.inputs.tag }}
+          draft: true
+          bodyFile: emotion-swc-plugin/target/release/swc_emotion-swc-plugin.dll
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: npm publish
@@ -99,10 +103,12 @@ jobs:
           cd emotion-swc-plugin
           cargo build --release
       - name: github publish
-        uses: softprops/action-gh-release@v1
+        uses: ncipollo/release-action@v1
         with:
-          files: emotion-swc-plugin/target/release/libswc_emotion-swc-plugin.dylib
-          tag_name: ${{ github.events.inputs.tag }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          tag: ${{ github.events.inputs.tag }}
+          draft: true
+          bodyFile: emotion-swc-plugin/target/release/libswc_emotion-swc-plugin.dylib
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: npm publish
