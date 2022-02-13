@@ -16,6 +16,8 @@ jobs:
         uses: actions-rs/toolchain@v1
         with:
           profile: minimal
+      - name: Install wasi
+        run: rustup target add wasm32-wasi
       - name: Build
         run: |
           rustup -V
@@ -47,6 +49,8 @@ jobs:
         uses: actions-rs/toolchain@v1
         with:
           profile: minimal
+      - name: Install wasi
+        run: rustup target add wasm32-wasi
       - name: Build
         run: |
           rustup -V
@@ -78,6 +82,8 @@ jobs:
         uses: actions-rs/toolchain@v1
         with:
           profile: minimal
+      - name: Install wasi
+        run: rustup target add wasm32-wasi
       - name: Build
         run: |
           rustup -V
