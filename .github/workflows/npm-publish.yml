@@ -83,7 +83,7 @@ jobs:
           rustup -V
           rustup toolchain list
           cargo -V
-          cd semotion-swc-plugin
+          cd emotion-swc-plugin
           cargo build --release
       - name: github publish
         uses: softprops/action-gh-release@v1
