@@ -1,0 +1,13 @@
+{
+    "name": "emotion-swc-plugin-win32-x64-msvc",
+    "version": "0.0.1",
+    "main": "swc_emotion-swc-plugin.dll",
+    "author": "IvanRodriCalleja <2132321@321.com>",
+    "license": "MIT",
+    "os": [
+      "win32"
+    ],
+    "cpu": [
+      "x64"
+    ]
+  }

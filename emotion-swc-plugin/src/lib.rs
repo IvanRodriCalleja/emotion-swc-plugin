@@ -26,5 +26,6 @@ impl VisitMut for TransformVisitor {
 /// steps with communicating with host. Refer `swc_plugin_macro` for more details.
 #[plugin_transform]
 pub fn process_transform(program: Program, _plugin_config: String) -> Program {
+    println!("emotion-swc-plugin coming soon!");
     program.fold_with(&mut as_folder(TransformVisitor))
 }
