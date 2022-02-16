@@ -1,15 +1,18 @@
-const swc = require("@swc/core");
+const swc = require('@swc/core');
+const babel = require('@babel/core');
+
 import { readFileSync } from 'fs';
 import path from 'path';
 
-export const transform = async (filePath, filename, pluginOptions) => {
+export const transform = async (filePath, filename = 'emotion.js', pluginOptions = {}) => {
     const code = readFileSync(filePath, { encoding: 'utf-8' });
     const swcOutput = await swcTransform(code, filename, pluginOptions);
+    const babelOutput = await babelTransform(code, filename, pluginOptions);
     
-    return { swcOutput }
+    return { swcOutput, babelOutput }
 }
 
-const swcTransform = (code, filename = 'emotion.js', pluginOptions = {}) => 
+const swcTransform = (code, filename, pluginOptions) => 
     swc.transform(code, {
         sourceMaps: false,
         filename,
@@ -29,3 +32,13 @@ const swcTransform = (code, filename = 'emotion.js', pluginOptions = {}) =>
             },
         },
     }).then(output => output.code);
+
+const babelTransform = (code, filename, pluginOptions) => 
+    babel.transformAsync(code, {
+        babelrc: false,
+        configFile: false,
+        ast: false,
+        filename,
+        plugins:[['@emotion', pluginOptions]] 
+    }).then(({ code }) => code)
+
