@@ -59,6 +59,15 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "d468802bab17cbc0cc575e9b053f41e72aa36bfa6b7f55e3529ffa43161b97fa"
 
 [[package]]
+name = "better_scoped_tls"
+version = "0.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "b73e8ecdec39e98aa3b19e8cd0b8ed8f77ccb86a6b0b2dc7cd86d105438a2123"
+dependencies = [
+ "scoped-tls",
+]
+
+[[package]]
 name = "bitflags"
 version = "1.3.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -207,9 +216,9 @@ dependencies = [
 
 [[package]]
 name = "hashbrown"
-version = "0.11.2"
+version = "0.12.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "ab5ef0d4909ef3724cc8cce6ccc8572c5c817592e9285f5464f8e86f8bd3726e"
+checksum = "8c21d40587b92fa6a6c6e3c1bdbf87d75511db5672f9c93175574b3a00df1758"
 dependencies = [
  "ahash",
 ]
@@ -261,9 +270,9 @@ checksum = "e2abad23fbc42b3700f2f279844dc832adb2b2eb069b2df918f455c4e18cc646"
 
 [[package]]
 name = "libc"
-version = "0.2.117"
+version = "0.2.118"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e74d72e0f9b65b5b4ca49a346af3976df0f9c61d550727f349ecd559f251a26c"
+checksum = "06e509672465a0504304aa87f9f176f2b2b716ed8fb105ebe5c02dc6dce96a94"
 
 [[package]]
 name = "lock_api"
@@ -552,9 +561,9 @@ dependencies = [
 
 [[package]]
 name = "rkyv"
-version = "0.7.31"
+version = "0.7.32"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "439655b8d657bcb28264da8e5380d55549e34ffc4149bea9e3521890a122a7bd"
+checksum = "8e3791595bf1ee951356964271bea7dafd1e1730e8be812f44a31afc38fa7bba"
 dependencies = [
  "bytecheck",
  "hashbrown",
@@ -566,9 +575,9 @@ dependencies = [
 
 [[package]]
 name = "rkyv_derive"
-version = "0.7.31"
+version = "0.7.32"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "cded413ad606a80291ca84bedba137093807cf4f5b36be8c60f57a7e790d48f6"
+checksum = "ca655472e721430bfb5c995a5602278e089c329cde96a0a53e1f711e3ba39c55"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -694,13 +703,14 @@ dependencies = [
 
 [[package]]
 name = "swc_common"
-version = "0.17.5"
+version = "0.17.8"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "dfac713c943b08c8e364801b24a2ea24ea657eadf22826840aa858eccd04d828"
+checksum = "c3a254407176ca1fd1157514b072d7f6ba2f43615bf9813ff89bd75cb2579f92"
 dependencies = [
  "ahash",
  "anyhow",
  "ast_node",
+ "better_scoped_tls",
  "cfg-if 0.1.10",
  "debug_unreachable",
  "either",
@@ -710,7 +720,6 @@ dependencies = [
  "owning_ref",
  "rkyv",
  "rustc-hash",
- "scoped-tls",
  "serde",
  "siphasher",
  "string_cache",
@@ -723,9 +732,9 @@ dependencies = [
 
 [[package]]
 name = "swc_ecma_ast"
-version = "0.65.3"
+version = "0.65.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "ff1aefdc512c8dfefa1de793c0e62a192bd74a7fa7e5affe3f08885751c127ee"
+checksum = "6c84de6f01fe49c594bfc6f48c2b16e475770799cb356a048c60451f6e3824e2"
 dependencies = [
  "is-macro",
  "num-bigint",
@@ -777,11 +786,10 @@ dependencies = [
 
 [[package]]
 name = "swc_plugin"
-version = "0.26.1"
+version = "0.27.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "636ba4c6688926f3ef3c1daec054cc2ed0fbcabda848907388551c2448e6b967"
+checksum = "dc2209eb02f7f757a5e2e074de6caefe500131214ad6980106faad305a9b6383"
 dependencies = [
- "once_cell",
  "swc_atoms",
  "swc_common",
  "swc_ecma_ast",
@@ -791,9 +799,9 @@ dependencies = [
 
 [[package]]
 name = "swc_plugin_macro"
-version = "0.2.1"
+version = "0.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "31789f975ce509a1b10444612ce4c6b13176badc0fd201402dde8013c2a4c3d4"
+checksum = "9b719a4ff08c9088ef443d69ae42d85c7878c640ad21df2e065d6ccc4fae5f2b"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -852,9 +860,9 @@ checksum = "cda74da7e1a664f795bb1f8a87ec406fb89a02522cf6e50620d016add6dbbf5c"
 
 [[package]]
 name = "tracing"
-version = "0.1.30"
+version = "0.1.31"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "2d8d93354fe2a8e50d5953f5ae2e47a3fc2ef03292e7ea46e3cc38f549525fb9"
+checksum = "f6c650a8ef0cd2dd93736f033d21cbd1224c5a967aa0c258d00fcf7dafef9b9f"
 dependencies = [
  "cfg-if 1.0.0",
  "pin-project-lite",
