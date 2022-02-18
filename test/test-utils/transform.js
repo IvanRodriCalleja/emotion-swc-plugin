@@ -22,7 +22,8 @@ const swcTransform = (code, filename = 'emotion.js', pluginOptions = {}) =>
             experimental: {
                 plugins: [
                     [
-                        path.resolve(__dirname, "../../emotion-swc-plugin/target/wasm32-wasi/release/emotion_swc_plugin.wasm"),
+                        //TODO: Use releade or debug depending if local or CI
+                        path.resolve(__dirname, "../../target/wasm32-wasi/debug/emotion_swc_plugin.wasm"),
                         pluginOptions
                     ]
                 ]
