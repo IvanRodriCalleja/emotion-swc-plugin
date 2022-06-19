@@ -28,7 +28,7 @@ jobs:
           rustup -V
           rustup toolchain list
           cargo -V
-          cargo build --release
+          cargo build --release --target wasm32-wasi
 
       - name: Increment version
         run: npm --no-git-tag-version version ${{ github.event.inputs.tag }}
