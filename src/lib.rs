@@ -1,4 +1,5 @@
 use serde::Deserialize;
+use swc_common::FileName;
 use std::path::Path;
 use swc_plugin::{ast::*, plugin_transform, TransformPluginProgramMetadata};
 
@@ -9,7 +10,7 @@ pub struct TransformVisitor;
 #[derive(Deserialize)]
 #[serde(rename_all = "camelCase")]
 struct PluginContext {
-    filename: String,
+    filename: Option<String>,
     env_name: String,
 }
 
@@ -62,10 +63,11 @@ pub fn process_transform(program: Program, data: TransformPluginProgramMetadata)
         .expect("Invalid plugin context");
 
     let config = config.to_emotion_options(&context.env_name);
-    let path = Path::new(&context.filename);
+    let file_name = context.filename.unwrap_or("".to_string());
+    let path = Path::new(&file_name);
     let source_map = std::sync::Arc::new(data.source_map);
 
     let program = program.fold_with(&mut emotion_next::emotion(config, path, source_map, data.comments));
-
+    
     program
 }
