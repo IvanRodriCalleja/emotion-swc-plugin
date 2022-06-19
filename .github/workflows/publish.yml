@@ -28,7 +28,6 @@ jobs:
           rustup -V
           rustup toolchain list
           cargo -V
-          cd emotion-swc-plugin
           cargo build --release
 
       - name: Increment version
