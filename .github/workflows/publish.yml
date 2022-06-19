@@ -31,7 +31,7 @@ jobs:
           cargo build --release
 
       - name: Increment version
-        run: npm --no-git-tag-version version {{ github.event.inputs.tag }}
+        run: npm --no-git-tag-version version ${{ github.event.inputs.tag }}
         
       - name: npm publish emotion-swc-plugin
         run: |
