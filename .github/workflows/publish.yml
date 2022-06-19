@@ -1,9 +1,6 @@
 name: Build
 
 on:
-  push:
-    tags:
-      - v*
   workflow_dispatch:
     inputs:
       tag:
@@ -22,6 +19,10 @@ jobs:
           profile: minimal
       - name: Install wasi
         run: rustup target add wasm32-wasi
+
+      - name: Run test
+        run: cargo test --color always
+
       - name: Build
         run: |
           rustup -V
@@ -29,15 +30,10 @@ jobs:
           cargo -V
           cd emotion-swc-plugin
           cargo build --release
-      - name: github publish
-        uses: ncipollo/release-action@v1
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          tag: v${{ github.event.inputs.tag }}
-          draft: true
-          bodyFile: target/wasm32-wasi/release/emotion-swc-plugin.wasm
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Increment version
+        run: npm --no-git-tag-version version {{ github.event.inputs.tag }}
+        
       - name: npm publish emotion-swc-plugin
         run: |
           echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc

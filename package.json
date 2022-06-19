@@ -1,15 +1,15 @@
 {
     "name": "emotion-swc-plugin",
-    "version": "0.0.1",
-    "main": "target/wasm32-wasi/release/emotion-swc-plugin.wasm",
-    "author": "IvanRodriCalleja <2132321@321.com>",
-    "files": [
-      "target/wasm32-wasi/release/emotion-swc-plugin.wasm",
-      "README.md"
+    "version": "1.0.0",
+    "description": "",
+    "author": "",
+    "license": "ISC",
+    "keywords": [
+        "swc-plugin"
     ],
-    "repository": {
-      "type": "git",
-      "url": "https://github.com/IvanRodriCalleja/emotion-swc-plugin"
+    "main": "target/wasm32-wasi/release/emotion_swc_plugin.wasm",
+    "scripts": {
+        "prepublishOnly": "cargo build --release --target wasm32-wasi"
     },
-    "license": "MIT"
-  }
+    "files": []
+}
