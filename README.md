@@ -3,7 +3,7 @@
 
 **SWC** transform plugin for **Emotion** equivalent to [@emotion/babel-plugin](https://www.npmjs.com/package/@emotion/babel-plugin)
 
-This plugin is a fork of [swc_emotion](https://github.com/vercel/next.js/tree/canary/packages/next-swc/crates/emotion) in order to allow run it as a plugin. This is created because existing one is executed from a **SWC** custom phase and uses a signature for `source_map` (Arc<SourceMap>) incompatible with plugin proxy Arc<SourceMapper>.
+This plugin is a fork of [swc_emotion](https://github.com/vercel/next.js/tree/canary/packages/next-swc/crates/emotion) in order to allow run it as a plugin. This is created because existing one is executed from a **SWC** custom phase and uses a signature for `source_map` (`Arc<SourceMap>`) incompatible with plugin proxy (`Arc<SourceMapper>`).
 
 This is mainly useful for people that don't use **Next JS** and can't use directly the default plugin like **CRA**, **Custom Webpack config** or **package libraries**.
 
