@@ -1,0 +1,13 @@
+{
+  "name": "with-node",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "transform": "node transform.js"
+  },
+  "devDependencies": {
+    "@swc/core": "^1.2.204",
+    "emotion-swc-plugin": "^0.0.4"
+  }
+}
