@@ -57,16 +57,15 @@ The plugin uses the same config as described in [Next emotion documentation](htt
 
 **Note**: Only importMap in @emotion/babel-plugin is not supported for now.
 
-## CRA With Craco
+## CRA With Craco [(example)](./exampes/with-cra-craco/)
 
-`yarn add --dev craco-swc emotion-swc-plugin node-polyfill-webpack-plugin @craco/craco`
+`yarn add --dev craco-swc emotion-swc-plugin node-polyfill-webpack-plugin @craco/craco @swc/core`
 
 or
 
-`npm install -d craco-swc emotion-swc-plugin node-polyfill-webpack-plugin @craco/craco --save-dev`
+`npm install -d craco-swc emotion-swc-plugin node-polyfill-webpack-plugin @craco/craco @swc/core --save-dev`
 
 ```javascript
-
 // craco.config.js
 const CracoSwcPlugin = require("craco-swc");
 
@@ -99,8 +98,6 @@ module.exports = {
             },
             experimental: {
               plugins: [
-                // @see https://nextjs.org/docs/advanced-features/compiler#emotion
-                // @see https://github.com/IvanRodriCalleja/emotion-swc-plugin
                 [
                   "emotion-swc-plugin",
                   {
@@ -121,7 +118,6 @@ module.exports = {
     }
   ]
 };
-
 ```
 
 ```javascript
