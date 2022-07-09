@@ -1,0 +1,38 @@
+{
+  "name": "with-cra-craco",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@emotion/react": "11.9.3",
+    "@emotion/styled": "11.9.3",
+    "node-polyfill-webpack-plugin": "2.0.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-scripts": "5.0.1",
+    "web-vitals": "^2.1.0"
+  },
+  "devDependencies": {
+    "@babel/runtime": "7.13.8",
+    "@craco/craco": "7.0.0-alpha.7",
+    "@swc/core": "1.2.210",
+    "craco-swc": "0.5.1",
+    "emotion-swc-plugin": "0.0.5",
+    "typescript": "^4.7.4"
+  },
+  "scripts": {
+    "start": "craco start",
+    "build": "craco build"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
