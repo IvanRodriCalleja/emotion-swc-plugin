@@ -57,3 +57,82 @@ The plugin uses the same config as described in [Next emotion documentation](htt
 
 **Note**: Only importMap in @emotion/babel-plugin is not supported for now.
 
+## CRA With Craco
+
+`yarn add --dev craco-swc emotion-swc-plugin node-polyfill-webpack-plugin @craco/craco`
+
+or
+
+`npm install -d craco-swc emotion-swc-plugin node-polyfill-webpack-plugin @craco/craco --save-dev`
+
+```javascript
+
+// craco.config.js
+const CracoSwcPlugin = require("craco-swc");
+
+const NodePolyfillPlugin = require("node-polyfill-webpack-plugin");
+
+module.exports = {
+  webpack: {
+    plugins: {
+      add: [new NodePolyfillPlugin()],
+      remove: []
+    }
+  },
+  eslint: {
+    enable: false
+  },
+  plugins: [
+    {
+      plugin: CracoSwcPlugin,
+      options: {
+        swcLoaderOptions: {
+          jsc: {
+            parser: {
+              syntax: "ecmascript",
+              jsx: true,
+            },
+            transform: {
+              react: {
+                runtime: "automatic"
+              }
+            },
+            experimental: {
+              plugins: [
+                // @see https://nextjs.org/docs/advanced-features/compiler#emotion
+                // @see https://github.com/IvanRodriCalleja/emotion-swc-plugin
+                [
+                  "emotion-swc-plugin",
+                  {
+                    sourceMap: true,
+                    autoLabel: 'dev-only',
+                    labelFormat: '[local]'
+                  }
+                ]
+              ]
+            }
+          }
+        },
+        assumptions: {
+          constantSuper: true,
+          noClassCalls: true
+        }
+      }
+    }
+  ]
+};
+
+```
+
+```javascript
+//package.json
+//...
+
+"scripts": {
+    "start": "craco start",
+    "build": "craco build"
+},
+
+//...
+```
+
